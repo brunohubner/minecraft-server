@@ -2,9 +2,9 @@
 # https://docker-minecraft-server.readthedocs.io/
 
 services:
-  minecraft-server:
-    container_name: minecraft-server
-    hostname: minecraft-server
+  minecraft-java-server:
+    container_name: minecraft-java-server
+    hostname: minecraft-java-server
     image: itzg/minecraft-server
     restart: unless-stopped
     ports:
@@ -35,11 +35,11 @@ services:
     stdin_open: true
 
     volumes:
-      - ./data:/data
+      - ./java-data:/data
     networks: 
-      - minecraft
+      - minecraft-java
 
 
 networks:
-  minecraft:
+  minecraft-java:
     driver: bridge
