@@ -1,0 +1,49 @@
+# https://github.com/itzg/docker-minecraft-bedrock-server
+# https://docker-minecraft-server.readthedocs.io/
+
+services:
+  minecraft-bedrock-server:
+    container_name: minecraft-bedrock-server
+    hostname: minecraft-bedrock-server
+    image: itzg/minecraft-bedrock-server
+    restart: unless-stopped
+    ports:
+      - $SERVER_PORT:19132/udp
+
+    environment:
+      EULA: "true"
+      TZ: $TZ
+      SERVER_NAME: $SERVER_NAME
+      NAME: $NAME
+      MOTD: $MOTD
+      VERSION: $VERSION
+      TYPE: $TYPE
+      SEED: $SEED
+      MODE: $MODE
+      DIFFICULTY: $DIFFICULTY
+      ALLOW_CHEATS: $ALLOW_CHEATS
+      ENABLE_LAN_VISIBILITY: $ENABLE_LAN_VISIBILITY
+      MAX_PLAYERS: $MAX_PLAYERS
+      ONLINE_MODE: $ONLINE_MODE
+      VIEW_DISTANCE: $VIEW_DISTANCE
+      MEMORY: $MEMORY
+      ENABLE_RCON: $ENABLE_RCON
+      RCON_PORT: $RCON_PORT
+      RCON_PASSWORD: $RCON_PASSWORD
+      RCON_CMDS_FIRST_CONNECT: $RCON_CMDS_FIRST_CONNECT
+
+    tty: true
+    stdin_open: true
+
+    volumes:
+      - bedrock-data:/data
+    networks: 
+      - minecraft-bedrock
+
+volumes:
+  bedrock-data:
+    external: true
+
+networks:
+  minecraft-bedrock:
+    driver: bridge
