@@ -1,0 +1,45 @@
+# https://github.com/itzg/docker-minecraft-server
+# https://docker-minecraft-server.readthedocs.io/
+
+services:
+  minecraft-server:
+    container_name: minecraft-server
+    hostname: minecraft-server
+    image: itzg/minecraft-server
+    restart: unless-stopped
+    ports:
+      - $SERVER_PORT:25565
+
+    environment:
+      EULA: "true"
+      SERVER_NAME: $SERVER_NAME
+      NAME: $NAME
+      MOTD: $MOTD
+      VERSION: $VERSION
+      TYPE: $TYPE
+      SEED: $SEED
+      MODE: $MODE
+      DIFFICULTY: $DIFFICULTY
+      MAX_PLAYERS: $MAX_PLAYERS
+      SPAWN_PROTECTION: $SPAWN_PROTECTION
+      PVP: $PVP
+      ONLINE_MODE: $ONLINE_MODE
+      VIEW_DISTANCE: $VIEW_DISTANCE
+      MEMORY: $MEMORY
+      ENABLE_RCON: $ENABLE_RCON
+      RCON_PORT: $RCON_PORT
+      RCON_PASSWORD: $RCON_PASSWORD
+      RCON_CMDS_FIRST_CONNECT: $RCON_CMDS_FIRST_CONNECT
+
+    tty: true
+    stdin_open: true
+
+    volumes:
+      - ./data:/data
+    networks: 
+      - minecraft
+
+
+networks:
+  minecraft:
+    driver: bridge

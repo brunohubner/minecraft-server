@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+
+/data/*
+
+!/data/ops.json
+!/data/whitelist.json
+!/data/server-icon.png
+
+*_backup.zip
+
