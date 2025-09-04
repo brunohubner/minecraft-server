@@ -6,6 +6,7 @@
 !bedrock.example.env
 
 /data/*
+/java-data/*
 
 # !/data/ops.json
 # !/data/whitelist.json
